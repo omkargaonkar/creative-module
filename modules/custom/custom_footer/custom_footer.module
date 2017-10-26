@@ -1,0 +1,54 @@
+<?php
+
+/**
+ * @file
+ * This is my module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_alter().
+ */
+ function custom_footer_form_system_site_information_settings_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  // Add a checkbox to site information form about configuring footer.
+  $form['site_information']= array(
+    '#type' => 'checkbox',
+    '#title' => t("Do you want to configure footer?"),
+    '#required'=> TRUE,
+    '#weight'=> 99,
+  );
+  $form['siteinfo_footer_setting'] = array(
+    '#type' => 'text_format',
+    '#title' => t('Footer Configuration'),
+    '#format' => isset($form_state->getValue['format']) ? $form_state->getValue['format'] : NULL,
+    '#states' => array(
+      'enabled' => array(
+        ':input[name="site_information"]' => array('checked' => TRUE),
+      ),
+    ),
+  );
+  $form['#submit'][] = 'custom_footer_form_system_site_information_settings_submit';
+}
+
+
+/**
+ * Submit callback for site_information_form.
+ *
+ * @param array $form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ */
+ function custom_footer_form_system_site_information_settings_submit(&$form, FormStateInterface $form_state) {
+    //dsm('Submit from .module');
+  }
+
+/**
+ * Implements submit callback for system_site_information_settings
+ */
+function custom_footer_form_submit($form,FormStateInterface &$form_state) {
+  $this->set('site_information', $form_state->getValues('site_information'))
+     ->set('siteinfo_footer_setting', $form_state->getValues('siteinfo_footer_setting'))
+     ->save();
+
+}
+?>
