@@ -1,0 +1,8 @@
+name: Custom Taxonomy
+description: A simple module to demonstrate  Taxonomy Block.
+core: 8.x
+package: Custom
+dependencies:
+- node
+- block
+type: module
