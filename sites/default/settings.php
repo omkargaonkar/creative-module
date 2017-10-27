@@ -285,7 +285,7 @@ $config_directories = array();
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = '';
+$settings['hash_salt'] = 'Zfl2btn5vWooFFL6sxa3BxsDfdyr1T33Zq_k2AcRoK-aooh9bwcFJgH2zsmPzGymYQrUrbttng';
 
 /**
  * Deployment identifier.
@@ -767,3 +767,13 @@ if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
  include $app_root . '/' . $site_path . '/settings.local.php';
 }
 $settings['install_profile'] = 'standard';
+$databases['default']['default'] = array (
+  'database' => 'creative_new',
+  'username' => 'root',
+  'password' => 'password',
+  'prefix' => '',
+  'host' => 'localhost',
+  'port' => '3306',
+  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
+  'driver' => 'mysql',
+);
