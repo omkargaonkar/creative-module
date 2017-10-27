@@ -9,9 +9,9 @@ $settings['container_yamls'][] = DRUPAL_ROOT . '/sites/default/development.servi
 $config['system.logging']['error_level'] = 'verbose';
 $config['system.performance']['css']['preprocess'] = FALSE;
 $config['system.performance']['js']['preprocess'] = FALSE;
-$settings['cache']['bins']['render'] = 'cache.backend.null';
+# $settings['cache']['bins']['render'] = 'cache.backend.null'; // UNCOMMENT FOR FULL DATA CACHING OFF
+# $settings['cache']['bins']['dynamic_page_cache'] = 'cache.backend.null'; // UNCOMMENT FOR FULL DATA CACHING OFF
 $settings['cache']['bins']['discovery_migration'] = 'cache.backend.memory';
-$settings['cache']['bins']['dynamic_page_cache'] = 'cache.backend.null';
 $settings['extension_discovery_scan_tests'] = TRUE;
 $settings['rebuild_access'] = TRUE;
 
