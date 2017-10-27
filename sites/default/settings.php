@@ -86,7 +86,6 @@
  * );
  * @endcode
  */
- $databases = array();
 
 /**
  * Customizing database settings.
@@ -767,13 +766,3 @@ if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
  include $app_root . '/' . $site_path . '/settings.local.php';
 }
 $settings['install_profile'] = 'standard';
-$databases['default']['default'] = array (
-  'database' => 'creative_new',
-  'username' => 'root',
-  'password' => 'password',
-  'prefix' => '',
-  'host' => 'localhost',
-  'port' => '3306',
-  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
-  'driver' => 'mysql',
-);
