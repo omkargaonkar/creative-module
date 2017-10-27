@@ -17,34 +17,37 @@ public function getFormId() {
   return 'batch_module_form';
 }
 /**
- * {@inheritdoc}
+ * Form implementation
  */
 public function buildForm(array $form, FormStateInterface $form_state) {
   $form['batch'] = array(
     '#type' => 'select',
     '#title' => 'Choose batch',
     '#options' => array(
-      'batch_1' => t('batch 1 - 1000 operations'),
-      'batch_2' => t('batch 2 - 20 operations.'),
+      '2' => '2',
+      '4' => '4',
+      '6' => '6',
+      '8' => '8',
+      'other' => 'other',
     ),
   );
-  // $form['selectbox'] = array(
-  //   '#type' => 'select',
-  //   '#title' => t('Publish or Unpublish'),
-  //   '#options' => array(
-  //     NODE_NOT_PUBLISHED => 'Unpublish',
-  //     NODE_PUBLISHED => 'Publish',
-  //   ),
-  // );
-  // $form['other'] = array(
-  //   '#type' => 'textfield',
-  //   '#title' => t('Enter your batch'),
-  //   '#states' => array(
-  //     'visible' => array(
-  //       ':input[name="batch"]' => array('value' => 'other'),
-  //     ),
-  //   ),
-  // );
+  $form['selectbox'] = array(
+    '#type' => 'select',
+    '#title' => t('Publish or Unpublish'),
+    '#options' => array(
+      NODE_NOT_PUBLISHED => 'Unpublish',
+      NODE_PUBLISHED => 'Publish',
+    ),
+  );
+  $form['other'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Enter your batch'),
+    '#states' => array(
+      'visible' => array(
+        ':input[name="batch"]' => array('value' => 'other'),
+      ),
+    ),
+  );
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => 'Go',
@@ -52,105 +55,35 @@ public function buildForm(array $form, FormStateInterface $form_state) {
   return $form;
 }
 /**
- * {@inheritdoc}
+ * form submit handler
  */
 public function submitForm(array &$form, FormStateInterface $form_state) {
-  // Gather our form value.
-  $value = $form_state->getValues()['batch'];
-  // Set the batch, using convenience methods.
-  $batch = [];
-  switch ($value) {
-    case 'batch_1':
-      $batch = $this->generateBatch1();
-      break;
-
-    case 'batch_2':
-      $batch = $this->generateBatch2();
-      break;
+  if ($form_state -> getValue('batch') == 'other') {
+    $options_key = $form_state -> getValue('other');
   }
-  batch_set($batch);
-}
-
-  /**
-   * Generate Batch 1.
-   *
-   * Batch 1 will process one item at a time.
-   *
-   * This creates an operations array defining what batch 1 should do, including
-   * what it should do when it's finished. In this case, each operation is the
-   * same and by chance even has the same $nid to operate on, but we could have
-   * a mix of different types of operations in the operations array.
-   */
-  public function generateBatch1() {
-    $num_operations = 1000;
-    drupal_set_message(t('Creating an array of @num operations', ['@num' => $num_operations]));
-
-    $operations = [];
-    // Set up an operations array with 1000 elements, each doing function
-    // batch_example_op_1.
-    // Each operation in the operations array means at least one new HTTP
-    // request, running Drupal from scratch to accomplish the operation. If the
-    // operation returns with $context['finished'] != TRUE, then it will be
-    // called again.
-    // In this example, $context['finished'] is always TRUE.
-    for ($i = 0; $i < $num_operations; $i++) {
-      // Each operation is an array consisting of
-      // - The function to call.
-      // - An array of arguments to that function.
-      $operations[] = [
-        'batch_example_op_1',
-        [
-          $i + 1,
-          t('(Operation @operation)', ['@operation' => $i]),
-        ],
-      ];
-    }
-    $batch = [
-      'title' => t('Creating an array of @num operations', ['@num' => $num_operations]),
-      'operations' => $operations,
-      'finished' => 'batch_example_finished',
-    ];
-    return $batch;
+  else {
+    $options_key = $form_state -> getValue('batch');
   }
-
-  /**
-   * Generate Batch 2.
-   *
-   * Batch 2 will process five items at a time.
-   *
-   * This creates an operations array defining what batch 2 should do, including
-   * what it should do when it's finished. In this case, each operation is the
-   * same and by chance even has the same $nid to operate on, but we could have
-   * a mix of different types of operations in the operations array.
-   */
-  public function generateBatch2() {
-    $num_operations = 20;
-
-    $operations = [];
-    // 20 operations, each one loads all nodes.
+  $options_check_key = $form_state -> getValue('selectbox');
+  if (!empty($options_key)) {
+    $num_operations = $options_key;
+    $operations = array();
+    $context = array();
     for ($i = 0; $i < $num_operations; $i++) {
-      $operations[] = [
-        'batch_example_op_2',
-        [t('(Operation @operation)', ['@operation' => $i])],
-      ];
+      $operations[] = array(
+        'batch_module_batch_process',
+        array(t('(Operation @operation)', array('@operation' => $i)), $options_key, $options_check_key),
+      );
     }
-    $batch = [
+    $batch = array(
       'operations' => $operations,
-      'finished' => 'batch_example_finished',
-      // @current, @remaining, @total, @percentage, @estimate and @elapsed.
-      // These placeholders are replaced with actual values in _batch_process(),
-      // using strtr() instead of t(). The values are determined based on the
-      // number of operations in the 'operations' array (above), NOT by the
-      // number of nodes that will be processed. In this example, there are 20
-      // operations, so @total will always be 20, even though there are multiple
-      // nodes per operation.
-      // Defaults to t('Completed @current of @total.').
-      'title' => t('Processing batch 2'),
-      'init_message' => t('Batch 2 is starting.'),
+      'finished' => 'batch_module_finished',
+      'title' => t('Processing Batch'),
+      'init_message' => t('Batch is starting.'),
       'progress_message' => t('Processed @current out of @total.'),
-      'error_message' => t('Batch 2 has encountered an error.'),
-    ];
-    return $batch;
+      'error_message' => t('Batch has encountered an error.'),
+    );
+    batch_set($batch);
   }
-
+}
 }

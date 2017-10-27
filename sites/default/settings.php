@@ -86,7 +86,6 @@
  * );
  * @endcode
  */
- $databases = array();
 
 /**
  * Customizing database settings.
@@ -285,7 +284,7 @@ $config_directories = array();
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = '';
+$settings['hash_salt'] = 'Zfl2btn5vWooFFL6sxa3BxsDfdyr1T33Zq_k2AcRoK-aooh9bwcFJgH2zsmPzGymYQrUrbttng';
 
 /**
  * Deployment identifier.
