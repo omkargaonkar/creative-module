@@ -1,6 +1,7 @@
 <?php
 use Drupal\Component\Utility\SafeMarkup;
 
+
 /**
 * Implements hook_mail().
 */
@@ -25,15 +26,18 @@ function article_mail_entity_insert(Drupal\Core\Entity\EntityInterface $entity) 
  if ($entity->getEntityTypeId() !== 'node' || ($entity->getEntityTypeId() === 'node' && $entity->bundle() !== 'article')) {
    return;
  }
+
  $mailManager = \Drupal::service('plugin.manager.mail');
  $module = 'article_mail';
  $key = 'create_article';
 
  $to = \Drupal::config('system.site')->get('mail');
 
-$config = \Drupal::config('article_mail.settings');
- $params['subject'] = $config->get('subject');
- $params['message'] = $config->get('body')['value'];
+ $config = \Drupal::config('article_mail.settings');
+ $token_service = \Drupal::service('token');
+
+ $params['subject'] = $token_service->replace($config->get('subject'));
+ $params['message'] = $token_service->replace($config->get('body')['value']);
 
  $langcode = \Drupal::currentUser()->getPreferredLangcode();
  $send = true;
