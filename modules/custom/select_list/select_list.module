@@ -3,3 +3,29 @@
  * @file
  * code for resume module
 */
+$default = !empty($form_state['values']['select_list1']) ? $form_state['values']['select_list1'] : 'none';
+
+  switch ($default) {
+    case 'india':
+      $states = $india;
+      break;
+
+    case 'bangladesh':
+      $states = $bangladesh;
+      break;
+
+    case 'srilanka':
+      $states = $srilanka;
+      break;
+
+    case 'pakistan' :
+      $states = $pakistan;
+      break;
+
+    case 'none':
+      $states = array('none' => '-- None --');
+      break;
+  }
+if (!empty($form_state['values']['select_list1']) && $form_state['values']['select_list1'] == 'none') {
+  $form['select_list2']['#disabled'] = TRUE;
+}
