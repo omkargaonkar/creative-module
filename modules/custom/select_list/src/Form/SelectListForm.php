@@ -38,11 +38,11 @@ class SelectListForm extends FormBase {
         '#options' => $this->getCourseBycollege($courses),
       ];
     }
-    $form['actions'] = [  
+    $form['actions'] = [
       '#type' => 'actions',
       'submit' => [
         '#type' => 'submit',
-        '#value' => $this->t('Submit'),
+        '#value' => $this->t('Refresh List'),
       ],
     ];
     return $form;
