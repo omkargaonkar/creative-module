@@ -23,7 +23,6 @@ class CustomFooterBlock extends BlockBase {
     return array(
       '#markup' => $config->get('siteinfo_footer_setting'),
     );
-  //  $storage = $form_state->getStorage();
 
   }
 

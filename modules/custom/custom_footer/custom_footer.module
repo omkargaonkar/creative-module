@@ -48,13 +48,4 @@ use Drupal\Core\Form\FormStateInterface;
      ->save();
 }
 
-  // /**
-  //  * Implements submit callback for system_site_information_settings
-  //  */
-  // function custom_footer_form_submit($form,FormStateInterface &$form_state) {
-  //   $this->set('site_information', $form_state->getValue('site_information'))
-  //      ->set('siteinfo_footer_setting', $form_state->getValue('siteinfo_footer_setting'))
-  //      ->save();
-  //
-  // }
 ?>
