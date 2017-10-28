@@ -12,43 +12,40 @@ use Drupal\Core\Form\FormStateInterface;
  */
  function custom_footer_form_system_site_information_settings_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
   // Add a checkbox to site information form about configuring footer.
-  $form['site_information']= array(
+  $config = \Drupal::config('custom_footer.settings');
+
+  $form['footer_visibility']= array(
     '#type' => 'checkbox',
     '#title' => t("Do you want to configure footer?"),
-    '#required'=> TRUE,
+    '#default_value' => $config->get('footer_visibility'),
     '#weight'=> 99,
+
   );
   $form['siteinfo_footer_setting'] = array(
     '#type' => 'text_format',
     '#title' => t('Footer Configuration'),
-    '#format' => isset($form_state->getValue['format']) ? $form_state->getValue['format'] : NULL,
+    '#default_value' => $config->get('siteinfo_footer_setting'),
     '#states' => array(
-      'enabled' => array(
-        ':input[name="site_information"]' => array('checked' => TRUE),
+      'visible' => array(
+        ':input[name="footer_visibility"]' => array('checked' => TRUE),
       ),
     ),
   );
   $form['#submit'][] = 'custom_footer_form_system_site_information_settings_submit';
 }
 
-
 /**
- * Submit callback for site_information_form.
+ * Submit callback for system_site_information_form.
  *
  * @param array $form
  * @param \Drupal\Core\Form\FormStateInterface $form_state
  */
- function custom_footer_form_system_site_information_settings_submit(&$form, FormStateInterface $form_state) {
-    //dsm('Submit from .module');
-  }
-
-/**
- * Implements submit callback for system_site_information_settings
- */
-function custom_footer_form_submit($form,FormStateInterface &$form_state) {
-  $this->set('site_information', $form_state->getValues('site_information'))
-     ->set('siteinfo_footer_setting', $form_state->getValues('siteinfo_footer_setting'))
+ function custom_footer_form_system_site_information_settings_submit(&$form, $form_state) {
+   $config = \Drupal::service('config.factory')->getEditable('custom_footer.settings');
+   $footer_message = $form_state->getValue('siteinfo_footer_setting');
+   $config->set('siteinfo_footer_setting', $footer_message['value'])
+     ->set('footer_visibility', $form_state->getValue('footer_visibility'))
      ->save();
-
 }
+
 ?>
