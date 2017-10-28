@@ -6,46 +6,46 @@ use Drupal\Component\Utility\SafeMarkup;
 * Implements hook_mail().
 */
 function article_mail_mail($key, &$message, $params) {
-$options = array(
-'langcode' => $message['langcode'],
-);
-
-switch ($key) {
-case 'create_article':
-$message['from'] = \Drupal::currentUser()->getEmail();
-$message['subject'] = SafeMarkup::checkPlain($params['subject']);
-$message['body'][] = SafeMarkup::checkPlain($params['message']);
-break;
-}
+  $options = array(
+    'langcode' => $message['langcode'],
+  );
+  switch ($key) {
+    case 'create_article':
+    $message['from'] = \Drupal::currentUser()->getEmail();
+    $message['subject'] = SafeMarkup::checkPlain($params['subject']);
+    $message['body'][] = SafeMarkup::checkPlain($params['message']);
+    break;
+  }
 }
 
 /**
-* Implements hook_entity_insert().
-*/
-function article_mail_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
- if ($entity->getEntityTypeId() !== 'node' || ($entity->getEntityTypeId() === 'node' && $entity->bundle() !== 'article')) {
-   return;
+ * Implements hook_entity_insert().
+ */
+ function article_mail_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
+   if ($entity->getEntityTypeId() !== 'node' || ($entity->getEntityTypeId() === 'node' && $entity->bundle() !== 'article')) {
+     return;
+   }
+   $mailManager = \Drupal::service('plugin.manager.mail');
+   $module = 'article_mail';
+   $key = 'create_article';
+
+   $to = \Drupal::config('system.site')->get('mail');
+
+   $config = \Drupal::config('article_mail.settings');
+   $token_service = \Drupal::service('token');
+
+   $params['subject'] = $token_service->replace($config->get('subject'));
+   $message = $config->get('body');
+   $message = $token_service->replace($message);
+   $params['message'] = $message;
+
+   $langcode = \Drupal::currentUser()->getPreferredLangcode();
+   $send = true;
+   $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+   if ($result['result'] !== true) {
+     drupal_set_message(t('There was a problem sending email and it was not sent.'), 'error');
+   }
+   else {
+     drupal_set_message(t('ADMIN HAS BEEN NOTIFIED ABOUT CREATION OF THIS ARTICLE.'));
+   }
  }
-
- $mailManager = \Drupal::service('plugin.manager.mail');
- $module = 'article_mail';
- $key = 'create_article';
-
- $to = \Drupal::config('system.site')->get('mail');
-
- $config = \Drupal::config('article_mail.settings');
- $token_service = \Drupal::service('token');
-
- $params['subject'] = $token_service->replace($config->get('subject'));
- $params['message'] = $token_service->replace($config->get('body')['value']);
-
- $langcode = \Drupal::currentUser()->getPreferredLangcode();
- $send = true;
- $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
- if ($result['result'] !== true) {
-   drupal_set_message(t('There was a problem sending email and it was not sent.'), 'error');
- }
- else {
-   drupal_set_message(t('ADMIN HAS BEEN NOTIFIED ABOUT CREATION OF THIS ARTICLE.'));
- }
-}
