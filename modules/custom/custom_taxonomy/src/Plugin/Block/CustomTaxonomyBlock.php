@@ -80,8 +80,8 @@ class CustomTaxonomyBlock extends BlockBase implements BlockPluginInterface {
     }
     $item_list = array (
       '#theme' => 'item_list',
-      '#title' => $taxo. ' Terms',
-      '#empty' => 'No Terms.',
+      '#title' => $taxo. t(' Terms'),
+      '#empty' => t('No Terms.'),
       '#items' => $term_item,
     );
     $message = \Drupal::service('renderer')->render($item_list);
