@@ -1,6 +1,6 @@
 # Define default links for this module.
 select_list.menu:
- title: 'Select List'
+ title: 'Mumbai university syllabus Select List'
  description: 'batch to publish all nodes'
  parent: main
  menu_name: main
