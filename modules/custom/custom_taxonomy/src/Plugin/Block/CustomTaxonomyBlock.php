@@ -51,6 +51,7 @@ class CustomTaxonomyBlock extends BlockBase implements BlockPluginInterface {
     $form['taxo'] = array (
       '#type' => 'select',
       '#title' => $this->t('List of current Vocabularies'),
+      '#empty_option' => $this->t('- Select a vocabulary -'),
       '#options' => $voca,
       '#default_value' => $this->configuration['taxo'] ? $this->configuration['taxo'] : '',
     );
@@ -71,11 +72,21 @@ class CustomTaxonomyBlock extends BlockBase implements BlockPluginInterface {
     $config = $this->getConfiguration();
     $taxo = $config['taxo'];
     $terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree($taxo,0,NULL,TRUE);
+    $term_item = array ();
     foreach ($terms as $term) {
-       $display .= \Drupal::l($term->toLink()->getText(), $term->toUrl()).' <br> ';
+      $term_item[] = array (
+        '#markup' => \Drupal::l($term->toLink()->getText(), $term->toUrl()),
+      );
     }
+    $item_list = array (
+      '#theme' => 'item_list',
+      '#title' => $taxo. ' Terms',
+      '#empty' => 'No Terms.',
+      '#items' => $term_item,
+    );
+    $message = \Drupal::service('renderer')->render($item_list);
     return [
-      '#markup' => $display,
+      '#markup' => $message,
     ];
   }
 }

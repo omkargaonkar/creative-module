@@ -1,0 +1,8 @@
+custom_footer.settings:
+  type: mapping
+  label: Variable Settings of Footer
+  mapping:
+    footer_visibility:
+      type: boolean
+    siteinfo_footer_setting:
+      type: string
