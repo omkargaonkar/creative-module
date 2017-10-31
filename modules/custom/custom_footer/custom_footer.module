@@ -18,6 +18,7 @@ function custom_footer_form_system_site_information_settings_alter(&$form, \Drup
     '#default_value' => $config->get('footer_visibility'),
     '#weight'=> 98,
   );
+  $footer_value = $config->get('siteinfo_footer_setting');
   $form['siteinfo_footer_setting'] = array(
     '#type' => 'text_format',
     '#title' => t('Footer Configuration'),
