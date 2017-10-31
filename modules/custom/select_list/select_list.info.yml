@@ -1,5 +1,5 @@
 name: select list
-description: select your state.
+description: View mumbai university syllabus year wise.
 core: 8.x
 package: Custom
 type: module

@@ -2,5 +2,4 @@ article_mail.settings_form:
   title: 'Article E-mail Setting'
   description: 'Template form for Email.'
   route_name: article_mail.settings_form
-  parent: main
-  main_menu: main
+  parent: system.admin_config_development
