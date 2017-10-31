@@ -72,7 +72,7 @@ public function submitForm(array &$form, FormStateInterface $form_state) {
     for ($i = 0; $i < $num_operations; $i++) {
       $operations[] = array(
         'batch_module_batch_process',
-        array(t('(Operation @operation)', array('@operation' => $i)), $options_key, $options_check_key),
+        array(t('(Operation @operation)', array('@operation' => $i+1)), $options_key, $options_check_key),
       );
     }
     $batch = array(
