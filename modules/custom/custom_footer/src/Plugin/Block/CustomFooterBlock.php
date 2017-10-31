@@ -20,10 +20,10 @@ class CustomFooterBlock extends BlockBase {
    */
   public function build() {
     $config = \Drupal::config('custom_footer.settings');
+    $footer_value = $config->get('siteinfo_footer_setting');
     return array(
-      '#markup' => $config->get('siteinfo_footer_setting'),
+      '#markup' => $footer_value['value'],
     );
-
   }
 
 }
