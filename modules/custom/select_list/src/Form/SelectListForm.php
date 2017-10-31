@@ -17,7 +17,7 @@ class SelectListForm extends FormBase {
    }
    public function buildForm(array $form, FormStateInterface $form_state) {
       $form['temperature'] = [
-      '#title' => $this->t('Select Course'),
+      '#title' => $this->t('Select Year'),
       '#type' => 'select',
       '#options' => $this->getYear(),
       '#empty_option' => $this->t('- Select your year -'),
@@ -34,7 +34,7 @@ class SelectListForm extends FormBase {
     if (!empty($courses)) {
       $form['college']['year'] = [
         '#type' => 'select',
-        '#title' => $this->t('subject'),
+        '#title' => $this->t('Select Subject'),
         '#options' => $this->getCourseBycollege($courses),
       ];
     }
