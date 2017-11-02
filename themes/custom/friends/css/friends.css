@@ -1,0 +1,58 @@
+@media all and (min-width: 768px) {
+ #main-content {
+   width: 100%;
+ }
+ .layout-content {
+   width: 50%;
+   float: left;
+   /*margin-left: 25%;
+   margin-right: 25%;*/
+   position: relative;
+ }
+ .layout-sidebar-first {
+   float: left;
+   width: 25%;
+   position: relative;
+ }
+ .layout-sidebar-second {
+   float: left;
+   clear: none;
+   position: relative;
+   width: 25%;
+ }
+ html {
+   height: 100%;
+ }
+ body {
+   margin: 0 0;
+   min-height: 100%;
+   line-height: 1.5;
+   word-wrap: break-word;
+   font-family: Georgia, "Times New Roman", Times, serif;
+   font-size: 87.5%;
+ }
+footer {
+   background-color: darkgray;
+ }
+}
+a,
+a.link {
+  text-decoration: none;
+}
+a:hover,
+a:active,
+a:focus,
+.link:hover,
+.link:active,
+.link:focus {
+  text-decoration: none;
+}
+#block-friends-branding img {
+  height: 30px;
+  width: 100px;
+}
+#block-friends-account-menu {
+    float: right;
+    margin-top: -50px;
+    width: 15%;
+}

@@ -1,0 +1,4 @@
+friends-styling:
+  css:
+    theme:
+      css/friends.css: {}
