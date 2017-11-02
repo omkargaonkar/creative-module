@@ -1,0 +1,39 @@
+
+@media screen and (min-width: 480px) {
+  .layout-sidebar-second {
+    float: left;
+    background-color: beige;
+    width: 25%;
+    border-radius: 13px;
+  }
+  .layout-content {
+    background: beige;
+    border-radius: 5px;
+    margin-left: 1%;
+    margin-right: 1%;
+    width: 48%;
+    border-radius: 13px;
+    float: left;
+  }
+  .layout-sidebar-first {
+    float: left;
+    background-color: beige;
+    width: 25%;
+    border-radius: 13px;
+  }
+  footer {
+    background: beige;
+    border-radius: 13px;
+    float: left;
+    width: 100%;;
+  }
+  #block-classic-sitebranding img {
+    width: 8%;
+    border-radius: 84px;
+  }
+
+  #block-classic-sitebranding {
+    background-color: burlywood;
+    border-radius: 13px;
+  }
+}
