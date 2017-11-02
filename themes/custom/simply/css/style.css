@@ -1,0 +1,38 @@
+#block-sitebranding img {
+  width: 50px;
+}
+body {
+  background-color: #778899;
+}
+header, footer {
+  background-color: #5f9ea0;
+}
+@media all and (min-width: 480px) {
+  #block-useraccountmenu-2 {
+    float: right;
+    margin-top: -70px;
+    padding: 0 20px;
+  }
+  #main-content {
+    width: 100%;
+  }
+  .layout-content {
+    width: 50%;
+    float: left;
+    position: relative;
+  }
+  .layout-sidebar-first {
+    float: left;
+    width: 25%;
+    position: relative;
+  }
+  .layout-sidebar-second {
+    float: left;
+    clear: none;
+    position: relative;
+    width: 25%;
+  }
+  footer {
+    margin-top: 25%;
+  }
+}

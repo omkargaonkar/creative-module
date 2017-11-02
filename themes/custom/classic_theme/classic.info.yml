@@ -1,0 +1,15 @@
+name: Classic
+type: theme
+description: 'Responsive Classic Theme '
+core: 8.x
+version: 8.x-1.0
+
+libraries:
+  - classic/global-styling
+
+regions:
+  header: Header
+  content:  Content
+  sidebar_first:  Sidebar First
+  sidebar_second: Sidebar Second
+  footer: Footer
