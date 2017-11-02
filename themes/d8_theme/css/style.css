@@ -34,6 +34,9 @@
    float: right;
    margin-top: -60px;
  }
+ footer {
+   clear: both;
+ }
 }
 a,
 a.link {
