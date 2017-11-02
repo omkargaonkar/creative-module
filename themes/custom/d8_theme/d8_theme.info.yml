@@ -1,0 +1,13 @@
+name: D8 Theme
+type: theme
+description: 'Custom theme in d8 to use media query.'
+core: 8.x
+libraries:
+  - d8_theme/d8_theme-styling
+
+regions:
+  header: Header
+  content: Content
+  sidebar_first: 'first'
+  sidebar_second: 'second'
+  footer: Footer
