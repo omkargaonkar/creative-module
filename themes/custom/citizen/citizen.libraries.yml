@@ -1,0 +1,5 @@
+star-citizen:
+  version: VERSION
+  css:
+    theme :
+        css/citizen.css: {}

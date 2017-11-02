@@ -1,0 +1,19 @@
+name: Citizen
+type: theme
+description: 'Star citizen theme developed for developers. this theme is responsive, mobile-first layout.'
+package: Core
+version: VERSION
+core: 8.x
+
+libraries:
+  - citizen/star-citizen
+
+regions:
+  header: Header
+  primary_menu: 'Primary menu'
+  secondary_menu: 'Secondary menu'
+  sidebar_first: 'Sidebar first'
+  content: 'Content'
+  sidebar_second: 'Sidebar second'
+  footer_first: 'Footer first'
+  footer: 'Footer'

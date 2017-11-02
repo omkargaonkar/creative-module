@@ -23,6 +23,7 @@
   #block-d8-theme-footer {
    margin-top: 20%;
    border-top: thin solid;
+   clear: both;
  }
  #block-d8-theme-branding {
    font-size: 70px;

@@ -1,0 +1,14 @@
+name: F.R.I.E.N.D.S
+type: theme
+description: 'A flexible theme with many regions and a responsive, mobile-first layout.'
+package: Custom
+version: 8.x-1.0
+core: 8.x
+libraries:
+  - friends/friends-styling
+regions:
+  header: Header
+  content: Content
+  sidebar_first: 'Sidebar First'
+  sidebar_second: 'Sidebar Second'
+  footer: Footer

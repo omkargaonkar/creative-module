@@ -1,0 +1,144 @@
+@media all and (min-width: 0px) {
+  header {
+    background: #58a1df;
+    height: 100px;
+  }
+  #block-sitebranding img {
+    height: 70px;
+    width: 150px;
+    margin-top: 15px;
+    margin-left: 15px;
+  }
+  #block-sitebranding a {
+    font-size: 32px;
+    margin-left: 20px;
+  }
+  .layout-sidebar-first {
+    background: green;
+    width: 25%;
+    text-align: center;
+    float: left;
+  }
+  .layout-content {
+    width: 50%;
+    float: left;
+    text-align: center;
+  }
+  .layout-sidebar-second {
+    background-color: red;
+    width: 25%;
+    text-align: center;
+    float: left;
+  }
+  footer {
+    text-align: center;
+  }
+}
+@media all and (min-width: 480px) {
+  header {
+    background: #58a1df;
+    height: 100px;
+  }
+  #block-sitebranding img {
+    height: 70px;
+    width: 150px;
+    margin-top: 15px;
+    margin-left: 15px;
+  }
+  #block-sitebranding a {
+    font-size: 32px;
+    margin-left: 20px;
+  }
+  .layout-sidebar-first {
+    background: green;
+    width: 25%;
+    text-align: center;
+    float: left;
+  }
+  .layout-content {
+    width: 50%;
+    float: left;
+    text-align: center;
+  }
+  .layout-sidebar-second {
+    background-color: red;
+    width: 25%;
+    text-align: center;
+    float: left;
+  }
+  footer {
+    text-align: center;
+  }
+  }
+@media all and (min-width: 768px) {
+  header {
+    background: #58a1df;
+    height: 100px;
+  }
+  #block-sitebranding img {
+    height: 70px;
+    width: 150px;
+    margin-top: 15px;
+    margin-left: 15px;
+  }
+  #block-sitebranding a {
+    font-size: 32px;
+    margin-left: 20px;
+  }
+  .layout-sidebar-first {
+    background: green;
+    width: 25%;
+    text-align: center;
+    float: left;
+  }
+  .layout-content {
+    width: 50%;
+    float: left;
+    text-align: center;
+  }
+  .layout-sidebar-second {
+    background-color: red;
+    width: 25%;
+    text-align: center;
+    float: left;
+  }
+  footer {
+    text-align: center;
+  }
+}
+@media all and (min-width: 1024px) {
+  header {
+    background: #58a1df;
+    height: 100px;
+  }
+  #block-sitebranding img {
+    height: 70px;
+    width: 150px;
+    margin-top: 15px;
+    margin-left: 15px;
+  }
+  #block-sitebranding a {
+    font-size: 32px;
+    margin-left: 20px;
+  }
+  .layout-sidebar-first {
+    background: green;
+    width: 25%;
+    text-align: center;
+    float: left;
+  }
+  .layout-content {
+    width: 50%;
+    float: left;
+    text-align: center;
+  }
+  .layout-sidebar-second {
+    background-color: red;
+    width: 25%;
+    text-align: center;
+    float: left;
+  }
+  footer {
+    text-align: center;
+  }
+  }
