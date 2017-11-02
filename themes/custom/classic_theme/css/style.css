@@ -24,8 +24,8 @@
   footer {
     background: beige;
     border-radius: 13px;
-    float: left;
-    width: 100%;;
+    clear: both;
+    width: 100%;
   }
   #block-classic-sitebranding img {
     width: 8%;

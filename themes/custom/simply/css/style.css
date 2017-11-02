@@ -7,6 +7,17 @@ body {
 header, footer {
   background-color: #5f9ea0;
 }
+.clearfix {
+  clear: both;
+}
+#block-simply-branding img {
+  width: 50px;
+}
+#block-simply-account-menu {
+  float: right;
+  margin-top: -70px;
+  padding: 0 20px;
+}
 @media all and (min-width: 480px) {
   #block-useraccountmenu-2 {
     float: right;
@@ -31,8 +42,5 @@ header, footer {
     clear: none;
     position: relative;
     width: 25%;
-  }
-  footer {
-    margin-top: 25%;
   }
 }
