@@ -18,9 +18,9 @@ $settings['rebuild_access'] = TRUE;
 $settings['skip_permissions_hardening'] = TRUE;
 
 $databases['default']['default'] = array (
-  'database' => '',
-  'username' => '',
-  'password' => '',
+  'database' => 'creative_dev',
+  'username' => 'root',
+  'password' => 'password',
   'prefix' => '',
   'host' => 'localhost',
   'port' => '3306',

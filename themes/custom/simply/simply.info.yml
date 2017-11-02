@@ -1,0 +1,14 @@
+name: Simply
+type: theme
+description: 'A flexible simple theme with basic regions and a responsive, mobile-first layout.'
+package: Core
+core: 8.x
+libraries:
+  - simply/global-styling
+
+regions:
+  header: Header
+  content: Content
+  sidebar_first: 'Sidebar first'
+  sidebar_second: 'Sidebar second'
+  footer: 'Footer'
