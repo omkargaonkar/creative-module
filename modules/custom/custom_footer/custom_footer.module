@@ -4,6 +4,7 @@
  * @file
  * This is my module.
  */
+
 use Drupal\Core\Form\FormStateInterface;
 
 /**
@@ -22,9 +23,9 @@ function custom_footer_form_system_site_information_settings_alter(&$form, \Drup
   $form['siteinfo_footer_setting'] = array(
     '#type' => 'text_format',
     '#title' => t('Footer Configuration'),
+    '#weight'=> 99,
     '#default_value' => isset($footer_value['value']) ? $footer_value['value'] : NULL,
     '#format'=> isset($footer_value['format']) ? $footer_value['format'] :NULL,
-    '#weight'=> 99,
     '#states' => array(
       'visible' => array(
         ':input[name="footer_visibility"]' => array('checked' => TRUE),
@@ -41,10 +42,11 @@ function custom_footer_form_system_site_information_settings_alter(&$form, \Drup
  * @param array $form
  * @param \Drupal\Core\Form\FormStateInterface $form_state
  */
-function custom_footer_form_system_site_information_settings_submit(&$form, $form_state) {
-  $config = \Drupal::service('config.factory')->getEditable('custom_footer.settings');
-  $footer_message = $form_state->getValue('siteinfo_footer_setting');
-  $config->set('siteinfo_footer_setting', $footer_message)
-   ->set('footer_visibility', $form_state->getValue('footer_visibility'))
-   ->save();
+ function custom_footer_form_system_site_information_settings_submit(&$form, $form_state) {
+   $config = \Drupal::service('config.factory')->getEditable('custom_footer.settings');
+   $footer_message = $form_state->getValue('siteinfo_footer_setting');
+   $config->set('siteinfo_footer_setting', $footer_message)
+     ->set('footer_visibility', $form_state->getValue('footer_visibility'))
+     ->save();
 }
+?>
