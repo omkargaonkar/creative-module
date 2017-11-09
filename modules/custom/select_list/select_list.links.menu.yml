@@ -1,7 +1,7 @@
 # Define default links for this module.
 select_list.menu:
  title: 'Mumbai university syllabus Select List'
- description: 'batch to publish all nodes'
+ description: 'Revised information technology Syllabus under mumbai university'
  parent: main
  menu_name: main
  route_name: select_list.form
