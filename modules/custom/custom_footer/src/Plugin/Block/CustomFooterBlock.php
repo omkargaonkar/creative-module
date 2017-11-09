@@ -9,7 +9,7 @@ use Drupal\Core\Block\BlockBase;
  *
  * @Block(
  *   id = "CustomfooterBlock",
- *   admin_label = @Translation("Custom Footer"),
+ *   admin_label = @Translation("Powered by Creative"),
  *   category = @Translation("Custom Footer"),
  * )
  */
@@ -22,7 +22,8 @@ class CustomFooterBlock extends BlockBase {
     $config = \Drupal::config('custom_footer.settings');
     $footer_value = $config->get('siteinfo_footer_setting');
     return array(
-      '#markup' => $footer_value['value'],
+      '#markup' => check_markup($footer_value['value'], $footer_value['format']),
+      //'#markup' => $footer_value['value'],
     );
   }
 
