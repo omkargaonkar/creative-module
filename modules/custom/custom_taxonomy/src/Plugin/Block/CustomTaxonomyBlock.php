@@ -71,6 +71,12 @@ class CustomTaxonomyBlock extends BlockBase implements BlockPluginInterface {
   public function build() {
     $config = $this->getConfiguration();
     $taxo = $config['taxo'];
+
+    //get vocabulary name
+    $voca_name = \Drupal\taxonomy\Entity\Vocabulary::load($taxo);
+    $name = $voca_name->label();
+
+    //get taxonomy terms
     $terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree($taxo,0,NULL,TRUE);
     $term_item = array ();
     foreach ($terms as $term) {
@@ -80,7 +86,7 @@ class CustomTaxonomyBlock extends BlockBase implements BlockPluginInterface {
     }
     $item_list = array (
       '#theme' => 'item_list',
-      '#title' => $taxo. t(' Terms'),
+      '#title' => t("These are @name's terms.", array('@name' => $name)),
       '#empty' => t('No Terms.'),
       '#items' => $term_item,
     );
